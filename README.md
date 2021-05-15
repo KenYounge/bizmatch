@@ -1,42 +1,37 @@
-# Match Business Names
+# BizMatch - A Utility to Match Business Names
 
-_Copyright (c) 2018 by Kenneth A. Younge. All Rights Reserved._  
+_Copyright (c) 20120 by Kenneth A. Younge._  
   
-Access to this code is provided subject to the 
-[Creative Commons Attribution-NonCommercial-NoDerivatives License](https://creativecommons.org/licenses/by-nc-nd/4.0/). 
-  
-For more information, contact the [Technology and Innovation Strategy Lab](http://tis.epfl.ch) at EPFL.
+Access to this code is provided subject to the [MIT License](https://opensource.org/licenses/MIT).    
 
 
 ## Overview
 
-This package provides an interactive way to match business names between two lists. Researchers often have a focal
-list of company names that they care about, and they want to find matches (perhaps one-to-one, or perhaps one-to-many)
-on another list of company names (the "alter list"). Part of that match might by automatic (e.g., the match is perfect),
-but other aspects of the match might be discretionary (i.e., the match is not perfect, the match is offset by time, etc.).
-This program therefore provides an iterative approach to matching, wherein the user can run it to find both acceptable
-matches, AND candidate matches to manually consider. The user can then move candidate matches they find acceptable off
-the candidate list, and/or tweak customization features such as synonyms, abbreviations, brand names, special cases, etc.
-Detailed instructions for managing the customization features for matching appear below.
+`bizmatch` provides an interactive approach to matching business names between two lists.  
+
+Researchers often have a focal list of company names that they care about, and then they need to find matches (perhaps one-to-one, or perhaps one-to-many) of those companies on another list (what we will call the "alter list"). Part of that match might by automatic (e.g., the match is perfect), but other aspects of the match might be discretionary (i.e., the match is not perfect, the match depends on a point in time when the companies do/don't match, etc.). 
+
+This program provides an iterative approach to the matching process. The user can run `bizmatch` to find **_direct matches_**, AND the user can run `bizmatch` to find **_candidate matches_** to examine in greater detail. After inspection of candidate matches the user can move matches that they find acceptable from the candidate list to the matched list, and/or tweak configuration settings such as synonyms, abbreviations, brand names, special cases, etc. to further refine the matching process. 
+
+
+**Please note:** The default configuration for `bizmatch` may not be appropriate to your context. The default configuration is appropriate to matching pharmaceutical companies from databases such as EDGAR and the SEC. You will need to reconfigure all of the settings (files starting with a + sign) to meet your own matching problem. Instructions for configuring `bizmatch` appear below.
 
 
 ## Installation
 
 Clone the module from GitHub into the working directory for your Python project.
 
-    git clone https://github.com/epfl-tis/bizy.git
+    git clone https://github.com/KenYounge/bizmatch.git
 
 Install all of bizy's requirements from the requirements.txt file:
 
-    pip install -r bizy/requirements.txt
+    pip install -r bizmatch/requirements.txt
 
-Customize the path to configuration files (optional). If you use PIP to install bizy, then the configuration files will 
-be located in the library installation path. bizy will attempt to fidn and use files in that path, but you can override
-that decision by changing the following line in the `settings.py` file.
+Customize the path to configuration files (optional). If you use PIP to install `bizmatch`, then the configuration files will be located in the library installation path. `bizmatch` will attempt to find and use files in that path, but you can override that decision by changing the following line in the `settings.py` file.
 
     PATH_CONFIG_FILES  = path.dirname(path.realpath(__file__)) + '/'
 
-Review other settings in the `settings.py` file based on the matching sensitivity you need. 
+Review other settings in the `settings.py` file based on the business domain and the matching sensitivity that you need for your project. 
 
 
 ## Usage
@@ -61,15 +56,14 @@ matches that are not date appropriate. Each of the lists should be setup as foll
         format:     [raw_name], [date]             (optional)
 
 
-
-The repository comes with two lists of business names that you can use for testing:  
+The repository comes with two lists of business names that you can already use for testing:  
 
   * `_edgar_biznames.csv` :  a focal list of business names from the SEC EDGAR database
   
   * `_sdc_biznames.cav`   : an alter list of business names from the SDC database. 
 
 
-### Configuration Files for Cleaning Buisness Names
+### Configuration Files for Cleaning Business Names
 
 The code works through a set of word replacements, brandname replacements, known
 name changes, name stemming, etc. to perform a better match. Each of those steps 
@@ -191,7 +185,8 @@ On each run of bizmatch.py
 
 #### To run everything in one pass...
 
-Run `run_match.py` to match one list of biz names to another list.
+Run `run_match.py` to match one list of business names to another list.
+  
 For example:
 
     python run_match.py _edgar_biznames.csv _sdc_biznames.csv
@@ -200,7 +195,8 @@ For example:
 #### To run everything in parallel batches...
 
 Run `run_batch.py` to match one list of biz names to another list, 
-but to do so by dividing the problem in separate batches. 
+but to do so by dividing the problem in separate batches.  
+
 For example, to parallelize across 4 cores:
 
     python run_batches.py _edgar_biznames.csv _sdc_biznames.csv 4 
@@ -231,3 +227,7 @@ or
     # Output is a boolean
     result = compare.compare_biznames(name1, name2, debug=DEBUG)
 
+
+# Disclaimer
+
+_USE THIS CODE AT YOUR OWN RISK._ I provide no guarantee about it's security, safety, reliability, or any other potential risk or harm.
