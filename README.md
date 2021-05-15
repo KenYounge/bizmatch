@@ -9,12 +9,11 @@ Access to this code is provided subject to the [MIT License](https://opensource.
 
 `bizmatch` provides an interactive approach to matching business names between two lists.  
 
-Researchers often have a focal list of company names that they care about, and then they need to find matches (perhaps one-to-one, or perhaps one-to-many) of those companies on another list (what we will call the "alter list"). Part of that match might by automatic (e.g., the match is perfect), but other aspects of the match might be discretionary (i.e., the match is not perfect, the match depends on a point in time when the companies do/don't match, etc.). 
+Researchers often have to match business names between a focal list of company names that they care about, and an "alter list" of potential matches (perhaps one-to-one, or perhaps one-to-many). Sometimes that match is straight-forward (e.g., the match is perfect), but often the match requires a judgment call (i.e., the match is not perfect, the match depends on the year in consideration, or other factors), and managing that process across lists of tens-of-thousands of companies is inefficient and prone to mistakes or researcher bias.
 
-This program provides an iterative approach to the matching process. The user can run `bizmatch` to find **_direct matches_**, AND the user can run `bizmatch` to find **_candidate matches_** to examine in greater detail. After inspection of candidate matches the user can move matches that they find acceptable from the candidate list to the matched list, and/or tweak configuration settings such as synonyms, abbreviations, brand names, special cases, etc. to further refine the matching process. 
+`bizmatch` provides a rigorous and consistent approach to the matching propblem. Users can run `bizmatch` in an iterative manner to find direct matches, AND users can also run `bizmatch` to find candidate matches to examine in greater detail. After inspection of candidate matches, users can then move matches that they find acceptable from the candidate list to the matched list, and/or tweak the configuration files (which define synonyms, abbreviations, brand names, special cases, etc.) to refine the matching process for their context. 
 
-
-**Please note:** The default configuration for `bizmatch` may not be appropriate to your context. The default configuration is appropriate to matching pharmaceutical companies from databases such as EDGAR and the SEC. You will need to reconfigure all of the settings (files starting with a + sign) to meet your own matching problem. Instructions for configuring `bizmatch` appear below.
+**PLEASE NOTE:** The default configuration for `bizmatch` may not be appropriate for your context. The default configuration was used to match pharmaceutical companies from EDGAR and the SEC, but you will need to reconfigure the configuration files (files starting with a + sign) to meet your own matching problem. Instructions for configuring `bizmatch` appear below.
 
 
 ## Installation
