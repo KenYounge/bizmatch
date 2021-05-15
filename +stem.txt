@@ -1,0 +1,10 @@
+biomed
+biophar
+biosci
+biosys
+biotec
+laborator
+pharma
+tec
+sci
+chem
